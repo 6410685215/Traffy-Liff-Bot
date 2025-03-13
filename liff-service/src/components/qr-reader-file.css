@@ -1,0 +1,15 @@
+.btn-scan-file {
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    color: var(--bs-white);
+
+    & > svg {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+.btn-scan-file:hover {
+    color: var(--bs-white);
+}

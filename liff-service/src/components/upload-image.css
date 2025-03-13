@@ -1,0 +1,16 @@
+.image-preview {
+    width: 100%;
+    height: 15rem;
+    border: 2px dashed #ccc;
+    border-radius: 1rem;
+    background-color: var(--bs-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.preview-img {
+    height: 14rem;
+}

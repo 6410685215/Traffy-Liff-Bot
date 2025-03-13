@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Status {
+  id          String   @id @default(cuid())
+  informId    String
+  status      String
+  timeStamp   DateTime @default(now())
+  description String?
+  photoUrl    String?
+  inform      Inform   @relation(fields: [informId], references: [id])
+}
+
+model Location {
+  id        String @id @unique
+  latitude  Float
+  longitude Float
+  address   String
+  inform    Inform @relation(fields: [id], references: [id])
+}
+
+model Inform {
+  id        String    @id @default(nanoid(6))
+  timeStamp DateTime  @default(now()) @updatedAt
+  type      String
+  user_id   String
+  user_name String
+  group_id  String
+  oa_id     String
+  org_name  String
+  org_id    String
+  location  Location?
+  status    Status[]
+}
+
+model categories {
+  id            Int     @id @default(autoincrement())
+  category_name String?
+}

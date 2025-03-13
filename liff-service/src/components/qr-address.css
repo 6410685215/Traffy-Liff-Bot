@@ -1,0 +1,55 @@
+.uuid-qr-input {
+
+    & input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    & button {
+        width: 4.5rem;
+    }
+    & svg {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+.scan-btn {
+    background-color: var(--bs-white);
+    border: none;
+
+    & button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.offcanvas-transform {
+    transition: transform 0.1s ease-in-out;
+    border-radius: 1.5rem 1.5rem 0 0;
+    max-width: 576px;
+    margin: 0 auto;
+}
+.offcanvas-title {
+    width: 100%;
+    text-align: center;
+}
+.offcanvas-body{
+    padding: 0;
+}
+.offcanvas.offcanvas-bottom {
+    height: 512px;
+}
+
+.map-detail {
+    height: auto;
+    & > p {
+        width: auto;
+        margin: 15px 0;
+        text-align: start;
+    }
+    & > button {
+        width: 100%;
+        max-width: 130px;
+        height: 2.5rem;
+    }
+}

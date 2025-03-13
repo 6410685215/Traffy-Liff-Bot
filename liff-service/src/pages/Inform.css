@@ -1,0 +1,14 @@
+.head-form {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+
+    & img {
+        /* drop shadow svg */
+        filter: drop-shadow(0 0 0.75rem #FFFFFF88);
+    }
+}
+
+.submit-btn-group {
+    border-radius: var(--bs-border-radius-lg);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}

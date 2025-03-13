@@ -1,0 +1,46 @@
+.qr-reader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    & > .video {
+        height: 100%;
+        display: none;
+    }
+
+    & > .canvas {
+        height: 100%;
+        background-color: var(--bs-gray-700);
+        overflow: hidden;
+    }
+
+    & > .viewFinderContainer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        & > .viewFinder {
+            width: 256px;
+            height: 256px;
+            border: 3px solid white;
+            transform: translateY(-1rem);
+            border-radius: 1rem;
+            box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.5);
+            background-color: transparent;
+        }
+    }
+}
+
+.qrScannerFile {
+    position: absolute;
+    display: flex;
+    bottom: 2rem;
+    right: 2rem;
+}

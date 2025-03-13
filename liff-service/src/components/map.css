@@ -1,0 +1,12 @@
+.leaflet-container {
+    height: 14rem;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    /* overflow: hidden; */
+  }
+  .leaflet-control-attribution.leaflet-control {
+    display: none;
+  }
+  .leaflet-popup-close-button {
+    display: none;
+  }
