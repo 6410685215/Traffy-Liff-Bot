@@ -19,6 +19,7 @@ import
     defaultMessage,
     getDestination,
     getEventType,
+    getSeflMention,
     replyMessage,
 } from './handler';
 import dotenv from 'dotenv';
@@ -66,8 +67,10 @@ app.post('/bot/callback',
                     async (event: webhook.Event): Promise<void> => {
                     switch (getEventType(event)) {
                         case 'message': {
-                            await replyMessage(client, event as webhook.MessageEvent, botUserID);
-                            break;
+                            if (getSeflMention(event)){
+                                await replyMessage(client, event as webhook.MessageEvent, botUserID);
+                                break;
+                            }
                         }
                         case 'postback': {
                             // !Pass

@@ -12,7 +12,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 router.post("/", (req, res) => {
     // Get the data from the request body
     const { body, file } = req;
-    console.log("Received body:", body);  // Log the other form data
+    console.log("Received body:", JSON.stringify(body, null, 2)); // Log the other form data
     console.log("Received file:", file);  // Log the uploaded file
 
     // Respond to the client

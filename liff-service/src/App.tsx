@@ -18,8 +18,10 @@ import
 {
     Inform,
     Status,
-    StatusById
+    StatusById,
+
 } from "./pages";
+import SendMessages from "./pages/testSendMessage";
 
 function App() {
     const [isInClient, setIsInClient] = useState(false);
@@ -71,6 +73,7 @@ function App() {
                     <Route path="/inform" element={<Inform />} />
                     <Route path="/status" element={<Status />} />
                     <Route path="/status/:id" element={<StatusById />} />
+                    <Route path="/sendMessages" element={<SendMessages />} />
                 </Routes>
             </Router>
             )}

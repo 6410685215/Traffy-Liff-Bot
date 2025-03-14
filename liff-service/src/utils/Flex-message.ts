@@ -8,6 +8,7 @@ import
     URIAction,
     Action
 } from '@line/bot-sdk';
+import { LiffMessage } from '@liff/send-messages/lib/type';
 
 const BaseUrl = `${import.meta.env.VITE_LIFF_URL}/${import.meta.env.VITE_LIFF_ID}`;
 
@@ -62,11 +63,6 @@ class FlexMessageBuilder {
             contents: {
                 type: 'bubble',
                 size: size,
-                body: {
-                    type: 'box',
-                    layout: 'vertical',
-                    contents: []
-                }
             }
         } : {
             type: 'flex',
@@ -140,8 +136,8 @@ class FlexBubbleBuilder extends FlexMessageBuilder {
 
 export interface Status {
     status: string;
-    timestamp: string;
-    desc?: string;
+    timeStamp: string;
+    description?: string;
     photoUrl?: string;
 }
 
@@ -153,13 +149,13 @@ function defaultBubble(
     orgName: string,
     timestamp: string,
     icon: string = 'https://cdn-icons-png.flaticon.com/512/18604/18604789.png',
-): CFlexMessage {
+): LiffMessage {
     const bubble = new FlexBubbleBuilder();
     const text = status[status.length - 1].status;
     const statusInfo = getStatusInfo(text);
     const bgColor = getStatusInfoColor(text);
     const photoUrl_0 = status[0].photoUrl || '';
-    const desc = status[0].desc || '';
+    const desc = status[0].description || '';
 
     const separator: FlexComponent =
     {
@@ -437,9 +433,9 @@ function defaultBubble(
             "uri": `${BaseUrl}/StatusById/${id}`
         } :
         {
-            "type": "postback",
+            "type": "message",
             "label": label,
-            "data": `updateStatus, ${id}`
+            "text": `[update-status]-${id}`
         };
         return {
             "type": "button",
@@ -565,9 +561,9 @@ function defaultBubble(
     bubble.addBodyContent(description);
     bubble.addBodyContent(separator);
     status.reverse().forEach((s, i) => {
-        bubble.addBodyContent(statusComponent(s.timestamp, s.status));
-        if ((i + 1) < status.length && (s.desc || s.photoUrl)) {
-            bubble.addBodyContent(statusComponentWithDesc(s.photoUrl || '', s.desc || '', s.status));
+        bubble.addBodyContent(statusComponent(s.timeStamp, s.status));
+        if ((i + 1) < status.length && (s.description || s.photoUrl)) {
+            bubble.addBodyContent(statusComponentWithDesc(s.photoUrl || '', s.description || '', s.status));
         }
     });
     bubble.addBodyContent(separator);

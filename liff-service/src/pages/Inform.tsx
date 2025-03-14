@@ -98,11 +98,11 @@ export default function Inform() {
             const response = await axios.post<{data: ResponsePostInform}>(`${BaseUrl}/backend/post/api/inform`, formData);
             const { id, status, type, orgName, timeStamp } = response.data.data;
             const bubble = defaultBubble("ยืนยันการแจ้งเรื่อง", id, status, type, orgName, timeStamp, "https://cdn-icons-png.flaticon.com/512/18604/18604789.png");
-            const message: CFlexMessage[] = [bubble];
             try {
-                await liff.sendMessages(message);
+                await liff.sendMessages([bubble]);
             } catch (error) {
-                throw  new Error(JSON.stringify(message, null, 2));
+                await axios.post(`${BaseUrl}/backend/post/`, [bubble]);
+                console.error(error);
             }
             liff.closeWindow();
         } catch (error) {
