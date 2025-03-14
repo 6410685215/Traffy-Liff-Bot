@@ -21,7 +21,7 @@ type CFlexCarousel = Omit<FlexCarousel, 'contents'> & {
     contents: CFlexBubble[];
 };
 type CFlexContainer = CFlexBubble | CFlexCarousel;
-type CFlexMessage = Omit<FlexMessage, 'contents'> & {
+export type CFlexMessage = Omit<FlexMessage, 'contents'> & {
     contents: CFlexContainer;
 };
 
@@ -138,7 +138,7 @@ class FlexBubbleBuilder extends FlexMessageBuilder {
     }
 }
 
-interface Status {
+export interface Status {
     status: string;
     timestamp: string;
     desc?: string;

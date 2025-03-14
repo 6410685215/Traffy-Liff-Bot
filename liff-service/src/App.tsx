@@ -23,6 +23,7 @@ import
 
 function App() {
     const [isInClient, setIsInClient] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const initLiff = async () => {
@@ -33,24 +34,29 @@ function App() {
             }
         };
 
-        // if (liff.isInClient()) {
-        //     setIsInClient(true);
-        //     initLiff();
-        // } else if ( navigator.userAgent.includes("Line") ) {
-        //     window.location.href = liff.permanentLink.createUrl();
-        // }
+        if (liff.isInClient()) {
+            setIsInClient(true);
+            setIsLoading(false);
+            initLiff();
+        } else if ( navigator.userAgent.includes("Line") ) {
+            window.location.href = liff.permanentLink.createUrl();
+        } else {
+            const initLoading = document.getElementById("init-loading");
+            initLoading?.remove();
+        }
 
         // DEV:
-        setIsInClient(true);
-        initLiff();
+        // setIsInClient(true);
+        // setIsLoading(false);
+        // initLiff();
     }, []);
 
     useEffect(() => {
         const initLoading = document.getElementById("init-loading");
-        if (! navigator.userAgent.includes("Line")) {
+        if (! isLoading ) {
             initLoading?.remove();
         }
-    }, []);
+    }, [isLoading]);
 
     return (
         <div className="App">

@@ -15,7 +15,7 @@ const origin = process.env.ORIGIN || "http://localhost:3002";
 app.use(express.json());
 
 const corsOptions = {
-    origin: origin,
+    // origin: origin,
     methods: ["GET", "POST"]
 };
 app.use(cors(corsOptions));

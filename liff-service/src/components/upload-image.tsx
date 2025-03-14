@@ -1,7 +1,6 @@
 import React,
 {
     useRef,
-    useEffect,
     useState,
     ChangeEvent
 } from "react";
@@ -13,6 +12,7 @@ import
     Card
 } from "react-bootstrap";
 import { GoFileMedia } from "react-icons/go";
+import imageCompression from 'browser-image-compression';
 
 import "./upload-image.css";
 
@@ -34,7 +34,10 @@ React.FC<UploadImageProps> = ({ image }) => {
                 setImagePreview(reader.result as string);
             };
             reader.readAsDataURL(file);
-            setImageFile(file);
+            handleCompressImage(file).then(compressedFile => {
+                setImageFile(compressedFile);
+                image(compressedFile);
+            });
             image(file);
         }
     };
@@ -42,6 +45,21 @@ React.FC<UploadImageProps> = ({ image }) => {
     const handleUploadClick = () => {
         fileInput.current?.click();
     };
+
+    const handleCompressImage = async (file: File): Promise<File> => {
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1280,
+            useWebWorker: true
+        };
+        try {
+            const compressedFile = await imageCompression(file, options);
+            return compressedFile;
+        } catch (error) {
+            console.error(error);
+            return file;
+        }
+    }
 
     return (
         <>

@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { v4 as uuidv4 } from 'uuid';
 
 interface UploadStrategy {
     upload(file: Express.Multer.File): Promise<string>;
@@ -13,9 +14,10 @@ if (!supabaseEndpoint || !supabaseKey || !bucketName) {
 const supabase = createClient(supabaseEndpoint, supabaseKey);
 class SupabaseStorageStrategy implements UploadStrategy {
     async upload(file: Express.Multer.File): Promise<string> {
+        const filename = `${uuidv4()}-${file.originalname}`
         const { data, error } = await supabase.storage
             .from(bucketName)
-            .upload(file.originalname, file.buffer, {
+            .upload(filename, file.buffer, {
                 contentType: file.mimetype,
             });
 
@@ -24,7 +26,7 @@ class SupabaseStorageStrategy implements UploadStrategy {
         }
 
         // return URL file
-        return supabase.storage.from(bucketName).getPublicUrl(file.originalname).data.publicUrl;
+        return supabase.storage.from(bucketName).getPublicUrl(filename).data.publicUrl;
     }
 }
 

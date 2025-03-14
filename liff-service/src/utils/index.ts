@@ -1,11 +1,15 @@
 import
 {
     FlexBubbleBuilder,
-    defaultBubble
+    defaultBubble,
+    type Status,
+    type CFlexMessage
 } from './Flex-message';
 
 export
 {
     FlexBubbleBuilder,
-    defaultBubble
+    defaultBubble,
+    Status,
+    CFlexMessage
 };

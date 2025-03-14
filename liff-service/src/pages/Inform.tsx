@@ -21,7 +21,9 @@ import
 import
 {
     FlexBubbleBuilder,
-    defaultBubble
+    defaultBubble,
+    Status,
+    CFlexMessage
 } from "../utils";
 
 import "./Inform.css";
@@ -32,7 +34,7 @@ const BaseUrl = import.meta.env.VITE_URL;
 
 interface ResponsePostInform {
     id: string;
-    status: string[];
+    status: Status[];
     type: string;
     orgName: string;
     timeStamp: string;
@@ -94,15 +96,17 @@ export default function Inform() {
 
         try {
             const response = await axios.post<{data: ResponsePostInform}>(`${BaseUrl}/backend/post/api/inform`, formData);
-            if (response.data) {
-                throw new Error("Failed to post inform");
-            }
-            const { id, status, type, orgName, timeStamp } = response.data;
+            const { id, status, type, orgName, timeStamp } = response.data.data;
             const bubble = defaultBubble("ยืนยันการแจ้งเรื่อง", id, status, type, orgName, timeStamp, "https://cdn-icons-png.flaticon.com/512/18604/18604789.png");
-            await liff.sendMessages([bubble]);
+            const message: CFlexMessage[] = [bubble];
+            try {
+                await liff.sendMessages(message);
+            } catch (error) {
+                throw  new Error(JSON.stringify(message, null, 2));
+            }
             liff.closeWindow();
         } catch (error) {
-            console.error(error);
+            alert(error);
         }
     }
 
