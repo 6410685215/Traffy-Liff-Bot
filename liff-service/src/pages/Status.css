@@ -1,0 +1,17 @@
+.status-tabs-nav {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid var(--bs-black);
+    background-color: var(--bs-white);
+}
+
+.status-container {
+    height: calc(100vh - 6rem - 5rem);
+    overflow-y: auto;
+}
+
+.modal-content {
+    width: 50%;
+    margin: 0 auto;
+}

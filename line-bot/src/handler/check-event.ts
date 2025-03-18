@@ -87,3 +87,25 @@ export const getSeflMention = (event: webhook.MessageEvent): boolean =>
     }
     return false;
 }
+
+export const getEventRequest = (event: webhook.MessageEvent, text: string): boolean =>
+{
+    if(event.message.type === 'text')
+    {
+        const message = event.message.text;
+        const command = message.split('-');
+        return command[0] === text;
+    }
+    return false;
+}
+
+export const getEventRequestUpdateId = (event: webhook.MessageEvent): string =>
+{
+    if(event.message.type === 'text')
+    {
+        const message = event.message.text;
+        const command = message.split('-');
+        return command[1];
+    }
+    return 'NaN';
+}

@@ -67,7 +67,6 @@ React.FC<UploadImageProps> = ({ image }) => {
                 <h5 className="mb-0">อัพโหลดรูปภาพ</h5>
             </Card.Header>
             <Card.Body>
-                <Form>
                     <Form.Group>
                         <Form.Label>อัพโหลดรูปภาพ</Form.Label>
                         <div className="d-flex justify-content-center">
@@ -90,6 +89,7 @@ React.FC<UploadImageProps> = ({ image }) => {
                             ref={fileInput}
                             style={{ display: "none" }}
                             onChange={handleImageChange}
+                            required
                         />
                         <div className="d-flex justify-content-end">
                             <Button variant="primary" onClick={handleUploadClick}>
@@ -97,7 +97,6 @@ React.FC<UploadImageProps> = ({ image }) => {
                             </Button>
                         </div>
                     </Form.Group>
-                </Form>
             </Card.Body>
         </>
     );

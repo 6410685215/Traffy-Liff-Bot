@@ -5,4 +5,10 @@ import * as Inform from './Inform'
 import * as Location from './Location'
 import * as Types from './Categories'
 
-export { Status, Inform, Location, Types }
+export
+{
+    Status,
+    Inform,
+    Location,
+    Types
+};

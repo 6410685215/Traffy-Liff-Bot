@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 3002
 
 # Run the Backend service
-CMD ["npm", "run", "init"]
+CMD ["npm", "run", "start"]

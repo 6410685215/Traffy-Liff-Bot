@@ -22,3 +22,7 @@ export async function getStatusByInformId(informId: string) {
 export async function updateStatus(id: string, data: Prisma.StatusUpdateInput) {
     return await status.update({ where: { id }, data })
 }
+
+export function getStatusByInformID(id: any) {
+    throw new Error("Function not implemented.")
+}

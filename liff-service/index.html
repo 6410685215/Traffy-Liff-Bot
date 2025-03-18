@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LIFF App</title>
 
+    <!-- Preload -->
+    <link
+      rel="preload"
+      href="https://placehold.co/300x200?text=image"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="/animations/megaPhone-Animation.lottie"
+      as="fetch"
+    />
+
     <!-- Leaflet -->
     <link
       rel="stylesheet"
@@ -18,11 +30,6 @@
       src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""
-    ></script>
-
-    <script
-      type="module"
-      src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
     ></script>
 
     <style>
@@ -48,17 +55,6 @@
 
   </head>
   <body>
-    <div id="init-loading">
-      <dotlottie-player
-        src="/ff/animations/megaPhone-Animation.lottie"
-        background="transparent"
-        speed="1"
-        style="width: 300px; height: 300px"
-        loop
-        autoplay
-      ></dotlottie-player>
-      <h1>LOADING...</h1>
-    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

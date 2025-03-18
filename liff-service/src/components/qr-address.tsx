@@ -97,6 +97,7 @@ const qrAddress: React.FC<QrAddressProps> = ({ uuid_qr, address, loc }) => {
                     placeholder="UUID-QR"
                     value={uuidQr}
                     onChange={(e) => setUuid(e.target.value)}
+                    required
                 />
                 <InputGroup.Text className="scan-btn p-0 ps-2">
                     <Button variant="dark" onClick={handleShow}>

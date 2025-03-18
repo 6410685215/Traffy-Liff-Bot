@@ -16,4 +16,4 @@ EXPOSE 3001
 
 # Run the LIFF app in development mode
 # CMD ["npm", "start"]
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]

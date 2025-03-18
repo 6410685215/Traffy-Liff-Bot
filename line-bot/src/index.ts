@@ -20,7 +20,11 @@ import
     getDestination,
     getEventType,
     getSeflMention,
+    getEventRequest,
+    getEventRequestUpdateId,
     replyMessage,
+    replyMessageUpdate,
+    replyMessageVerify
 } from './handler';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -67,14 +71,18 @@ app.post('/bot/callback',
                     async (event: webhook.Event): Promise<void> => {
                     switch (getEventType(event)) {
                         case 'message': {
-                            if (getSeflMention(event)){
+                            if (getSeflMention(event as webhook.MessageEvent)) {
                                 await replyMessage(client, event as webhook.MessageEvent, botUserID);
-                                break;
+                            }
+                            if (getEventRequest(event as webhook.MessageEvent, '[updateStatus]')) {
+                                await replyMessageUpdate(client, event as webhook.MessageEvent);
+                            }
+                            if (getEventRequest(event as webhook.MessageEvent, '[verifyInform]')) {
+                                await replyMessageVerify(client, event as webhook.MessageEvent);
                             }
                         }
                         case 'postback': {
                             // !Pass
-                            break;
                         }
                     }
                 })

@@ -27,7 +27,7 @@ model Location {
 }
 
 model Inform {
-  id        String    @id @default(nanoid(6))
+  id        String    @id @default(cuid())
   timeStamp DateTime  @default(now()) @updatedAt
   type      String
   user_id   String

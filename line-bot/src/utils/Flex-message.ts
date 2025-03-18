@@ -3,14 +3,17 @@ import
     FlexBubble,
     FlexCarousel,
     FlexComponent,
+    FlexContainer,
     FlexMessage,
     FlexBox,
     URIAction,
     Action
 } from '@line/bot-sdk';
-import { LiffMessage } from '@liff/send-messages/lib/type';
 
-const BaseUrl = `${import.meta.env.VITE_LIFF_URL}/${import.meta.env.VITE_LIFF_ID}`;
+import dotenv from 'dotenv';
+dotenv.config();
+
+const BaseUrl = process.env.LIFF_URL;
 
 type URIActionWithLabel = URIAction & {
     label: string;
@@ -125,7 +128,7 @@ class FlexBubbleBuilder extends FlexMessageBuilder {
         }
     }
 
-    getBubble(): CFlexBubble {
+    getBubble(): FlexBubble {
         return this.Bubble;
     }
 
@@ -150,7 +153,7 @@ function defaultBubble(
     orgName: string,
     timestamp: string,
     icon: string = 'https://cdn-icons-png.flaticon.com/512/18604/18604789.png',
-): LiffMessage {
+): FlexContainer {
     const bubble = new FlexBubbleBuilder();
     const text = status[status.length - 1].status;
     const statusInfo = getStatusInfo(text);
@@ -165,7 +168,15 @@ function defaultBubble(
     const timestampComponent: FlexComponent =
     {
         "type": "text",
-        "text": timestamp,
+        "text": new Date(timestamp).toLocaleTimeString('th-TH',
+            {
+                timeZone: 'Asia/Bangkok',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }),
         "size": "xs",
         "align": "start",
         "color": "#B7B7B7"
@@ -426,9 +437,9 @@ function defaultBubble(
             "uri": `${BaseUrl}/StatusById/${id}`
         } :
         {
-            "type": "message",
+            "type": "postback",
             "label": label,
-            "text": `[update-status]-${id}`
+            "data": `[updateStatus]-${id}`
         };
         return {
             "type": "button",
@@ -562,10 +573,10 @@ function defaultBubble(
 
     bubble.addFooterContent(separator);
     bubble.addFooterContent(actionButtonComponent('ดูรายละเอียด', id, true));
-    // bubble.addFooterContent(actionButtonComponent('อัปเดตสถานะ', id));
+    bubble.addFooterContent(actionButtonComponent('อัปเดตสถานะ', id));
 
 
-    return bubble.build();
+    return bubble.getBubble();
 };
 
 export {

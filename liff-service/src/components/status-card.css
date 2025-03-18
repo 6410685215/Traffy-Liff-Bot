@@ -1,0 +1,32 @@
+.status-card {
+
+    > img {
+        width: 100%;
+        height: 176px;
+        object-fit: cover;
+    }
+
+    .text-waiting {
+        color: #EF454D;
+    }
+
+    .text-processing {
+        color: #FFB433;
+    }
+
+    .btn-group {
+        width: 100%;
+    }
+}
+
+.status-card.border-success {
+    border-bottom: 5px solid #198754;
+}
+
+.status-card.border-waiting {
+    border-bottom: 5px solid #EF454D;
+}
+
+.status-card.border-processing {
+    border-bottom: 5px solid #FFC107;
+}

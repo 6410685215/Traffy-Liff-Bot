@@ -70,13 +70,7 @@ router.post("/api/inform", upload.single("image"), async (req, res) => {
 
     res.json({
         status: "200",
-        data: {
-            id: data.id,
-            status: [status],
-            type: inform_type,
-            orgName: org_name,
-            timeStamp: data.timeStamp,
-        }
+        id: data.id,
     });
 });
 

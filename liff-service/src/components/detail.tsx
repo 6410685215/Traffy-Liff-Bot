@@ -7,8 +7,7 @@ import React,
 import
 {
     Card,
-    Form,
-    Button,
+    Form
 } from "react-bootstrap";
 import axios from "axios";
 
@@ -39,7 +38,7 @@ React.FC<DetailProps> = ({ informType, description }) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${BaseUrl}/backend/get/api/types`);
-                setTypeList(response.data.data);
+                setTypeList(response.data.types);
             } catch (error) {
                 console.error(error);
             }
@@ -53,14 +52,14 @@ React.FC<DetailProps> = ({ informType, description }) => {
                 <h5 className="mb-0">รายละเอียดเรื่องแจ้ง</h5>
             </Card.Header>
             <Card.Body>
-                <Form>
                     <Form.Group>
                         <Form.Label>เลือกประเภทเรื่องแจ้ง</Form.Label>
                         <Form.Select
                             aria-label="Default select example"
                             onChange={handleTypeChange}
+                            required
                         >
-                            <option>ประเภทเรื่องแจ้ง</option>
+                            <option label="ประเภทเรื่องแจ้ง"></option>
                             {typeList.map((item) => {
                                 return <option key={item.id} value={item.category_name}>{item.category_name}</option>
                             })}
@@ -69,12 +68,15 @@ React.FC<DetailProps> = ({ informType, description }) => {
                     <Form.Group className="mt-3">
                         <Form.Label>รายละเอียด</Form.Label>
                         <Form.Control
+                            required
                             as="textarea" rows={3}
                             placeholder="เพิ่มรายละเอียด"
                             onChange={handleDescChange}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            กรุณากรอกรายละเอียด
+                        </Form.Control.Feedback>
                     </Form.Group>
-                </Form>
             </Card.Body>
         </>
     );
