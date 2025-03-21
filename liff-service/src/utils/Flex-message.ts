@@ -33,7 +33,7 @@ function getStatusInfoColor(status: string): string {
         case 'กำลังดำเนินการ':
             return '#FFC107';
         case 'เสร็จสิ้น':
-            return '#198754';
+            return '#00BA79';
         default:
             return '#B7B7B7';
     }
