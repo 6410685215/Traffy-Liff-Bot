@@ -5,7 +5,6 @@
 VITE_LIFF_ID={your_liff_id}
 VITE_MAP_API_KEY={your_map_api_key by Traces Track (OpenStreetMap)}
 VITE_RAPID_API_KEY={your_rapid_api_key for reverse geocoding}
-VITE_URL=https://{your_domain.com}
 VITE_LIFF_URL=https://liff.line.me
 ```
 

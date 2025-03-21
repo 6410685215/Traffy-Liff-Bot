@@ -6,10 +6,13 @@ import
     type CFlexMessage
 } from './Flex-message';
 
+import { generateId } from './generateId';
+
 export
 {
     FlexBubbleBuilder,
     defaultBubble,
     Status,
-    CFlexMessage
+    CFlexMessage,
+    generateId
 };

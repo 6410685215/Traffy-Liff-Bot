@@ -1,0 +1,20 @@
+.status-line+*>p.wait {
+    font-weight: bold;
+    color: var(--color-wait);
+}
+
+.status-line+*>p.process {
+    font-weight: bold;
+    color: #FFB433;
+}
+
+.status-line+*>p.success {
+    font-weight: bold;
+    color: var(--color-success);
+}
+
+.status-line+*>p {
+    font-size:medium;
+    margin-bottom: 1rem;
+    color: var(--bs-gray-300);
+}

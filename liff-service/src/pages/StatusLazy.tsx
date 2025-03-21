@@ -48,7 +48,7 @@ export default function StatusLazy() {
                         </Tab.Pane>
                         <Tab.Pane eventKey="second">
                             <Card className={"status-card mb-3"}>
-                                <Card.Img variant="top" src='https://placehold.co/300x200' />
+                                <Card.Img variant="top" src='https://placehold.co/300x200?text=image' />
                                 <Card.Body>
                                     <Placeholder as={Card.Title} animation="glow">
                                         <Placeholder xs={6} />

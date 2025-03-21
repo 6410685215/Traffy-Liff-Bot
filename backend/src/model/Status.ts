@@ -16,7 +16,7 @@ export async function getStatusById(id: string) {
 }
 
 export async function getStatusByInformId(informId: string) {
-    return await status.findMany({ where: { informId } })
+    return await status.findMany({ where: { informId }, orderBy: { timeStamp: 'asc' } })
 }
 
 export async function updateStatus(id: string, data: Prisma.StatusUpdateInput) {

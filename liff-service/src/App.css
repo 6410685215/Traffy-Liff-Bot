@@ -12,6 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --color-wait: #EF454D;
+  --color-process: #FFC107;
+  --color-success: #198754;
+
+
   max-width: 576px;
   margin: 0 auto;
 }

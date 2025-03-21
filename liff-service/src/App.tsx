@@ -29,7 +29,7 @@ function App() {
             setIsInClient(true);
             setIsLoading(false);
         } else if (navigator.userAgent.includes("Line")) {
-            window.location.href = liff.permanentLink.createUrl();
+            // window.location.href = liff.permanentLink.createUrl();
         }
 
     }, []);

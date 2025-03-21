@@ -1,6 +1,5 @@
 import React,
 {
-    useRef,
     useState,
     useEffect,
 } from "react";
@@ -12,13 +11,13 @@ import
     ButtonGroup,
     Card
 } from "react-bootstrap";
-import CryptoJS from "crypto-js";
 
 import "./status-card.css";
 import
 {
     Status,
-    defaultBubble
+    defaultBubble,
+    generateId
 } from "../utils";
 
 interface StatusCardProps {
@@ -69,11 +68,7 @@ React.FC<StatusCardProps> = ({ inform }) => {
         setDescription(status_first.description);
         setType(inform.type);
         setImage(status_first.photoUrl);
-
-        const id = CryptoJS.HmacMD5(inform.id, import.meta.env.VITE_LIFF_ID).toString().slice(0, 6);
-        setIdEncrypt(id);
-
-        setIdEncrypt(`${new Date(inform.timeStamp).getFullYear()}-${id}-G`);
+        setIdEncrypt(generateId(inform.timeStamp, inform.id));
     }, []);
 
     function StatusColor(status: string | null): string {
@@ -92,11 +87,11 @@ React.FC<StatusCardProps> = ({ inform }) => {
     function StatusBorder(status: string | null): string {
         switch (status) {
             case "รอรับเรื่อง":
-                return "border-waiting";
+                return "border-b-waiting";
             case "กำลังดำเนินการ":
-                return "border-processing";
+                return "border-b-processing";
             case "เสร็จสิ้น":
-                return "border-success";
+                return "border-b-success";
             default:
                 return "";
         }

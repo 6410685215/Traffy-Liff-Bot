@@ -7,7 +7,6 @@ import express,
 import
 {
     ClientConfig,
-    MessageAPIResponseBase,
     messagingApi,
     middleware,
     MiddlewareConfig,
@@ -16,12 +15,11 @@ import
 } from '@line/bot-sdk';
 import
 {
-    defaultMessage,
     getDestination,
     getEventType,
     getSeflMention,
     getEventRequest,
-    getEventRequestUpdateId,
+    getEventPostbackDataRequest,
     replyMessage,
     replyMessageUpdate,
     replyMessageVerify
@@ -80,9 +78,13 @@ app.post('/bot/callback',
                             if (getEventRequest(event as webhook.MessageEvent, '[verifyInform]')) {
                                 await replyMessageVerify(client, event as webhook.MessageEvent);
                             }
+                            break;
                         }
                         case 'postback': {
-                            // !Pass
+                            if (getEventPostbackDataRequest(event as webhook.PostbackEvent, '[updateStatus]')) {
+                                await replyMessageUpdate(client, event as webhook.PostbackEvent);
+                            }
+                            break;
                         }
                     }
                 })

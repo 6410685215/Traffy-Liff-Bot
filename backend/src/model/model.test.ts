@@ -51,21 +51,13 @@ const statusData2 = {
 
 const statusData3 = {
     status: "เสร็จสิ้น",
-    description: "description เสร็จสิ้น",
-    photoUrl: "https://picsum.photos/200/300"
-};
-const locationData = {
-    latitude: 13.7563,
-    longitude: 100.5018,
-    address: "address-test-2"
+    description: "ทดสอบการแจ้ง status เสร็จสิ้น",
+    photoUrl: "https://picsum.photos/200/300?1"
 };
 
 async function addInform() {
-    const result = await Inform.addInform(data);
-    await Status.addStatus({ ...statusData, inform: { connect: { id: result.id } }});
-    await Status.addStatus({ ...statusData2, inform: { connect: { id: result.id } }});
-    await Status.addStatus({ ...statusData3, inform: { connect: { id: result.id } }});
-    await Location.addLocation({ ...locationData, inform: { connect: { id: result.id } }});
+    await Status.addStatus({ ...statusData3, inform: { connect: { id: "cm8if02tz0000mz2aaqql8e43" } }});
+    // await Status.addStatus({ ...statusData3, inform: { connect: { id: result.id } }});
 }
 
 async function getInform() {

@@ -3,8 +3,6 @@ import
     webhook,
     TextMessage,
 } from '@line/bot-sdk';
-import { get } from 'http';
-import { console } from 'inspector';
 
 export const defaultMessage = (event: webhook.Event, botUserID: string, groupId: string): TextMessage =>
 {
@@ -14,8 +12,6 @@ export const defaultMessage = (event: webhook.Event, botUserID: string, groupId:
         LIFF_URL: string;
     }
     const { PUBLIC_URL, LIFF_URL} = process.env as unknown as VariablesEnv;
-    // const PUBLIC_URL = process.env.PUBLIC_URL;
-    // const LIFF_URL = process.env.LIFF_URL;
     const message: TextMessage =
     {
         type: 'text',

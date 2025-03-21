@@ -11,8 +11,6 @@ import
 } from "react-bootstrap";
 import axios from "axios";
 
-const BaseUrl = import.meta.env.VITE_URL;
-// const BaseUrl = "http://localhost:3002";
 interface DetailProps {
     informType: (result: string) => void;
     description: (result: string) => void;
@@ -37,7 +35,7 @@ React.FC<DetailProps> = ({ informType, description }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${BaseUrl}/backend/get/api/types`);
+                const response = await axios.get('/backend/get/api/types');
                 setTypeList(response.data.types);
             } catch (error) {
                 console.error(error);

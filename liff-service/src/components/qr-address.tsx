@@ -6,7 +6,7 @@ import
     InputGroup,
     Offcanvas
 } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import QrScanner from "../components/qr-reader";
 import { BsQrCodeScan } from "react-icons/bs";
 import axios from "axios";

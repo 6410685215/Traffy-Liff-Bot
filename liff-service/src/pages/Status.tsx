@@ -16,7 +16,7 @@ import StatusLazy from "./StatusLazy";
 import folderCheckIcon from "/liff-icons/folder_check.svg";
 import "./Status.css";
 
-const BaseUrl = import.meta.env.VITE_URL;
+// const BaseUrl = import.meta.env.VITE_URL;
 // const BaseUrl = "http://localhost:3002";
 // const BaseUrl = "http://10.221.43.76:3002";
 
@@ -30,7 +30,8 @@ export default function Status() {
             try {
                 const params = new URLSearchParams(window.location.search);
                 const groupId = params.get("groupId");
-                const response = await axios.get(`${BaseUrl}/backend/get/status/${groupId}`);
+                // const response = await axios.get(`${BaseUrl}/backend/get/status/${groupId}`);
+                const response = await axios.get(`/backend/get/status/${groupId}`);
                 const informData = response.data.data;
                 const informSuccessData = informData.filter((inform: any) => inform.status[inform.status.length - 1].status === "เสร็จสิ้น");
                 const informProsessData = informData.filter((inform: any) => inform.status[inform.status.length - 1].status !== "เสร็จสิ้น");

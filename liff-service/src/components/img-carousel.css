@@ -1,0 +1,33 @@
+.img-carousel-container  {
+
+    & .img-carousel-item{
+        border-left: 1rem solid var(--bs-white);
+        border-right: 1rem solid var(--bs-white);
+    }
+
+    & .carousel-control-next {
+        right: 1rem;
+    }
+
+    & .carousel-control-prev {
+        left: 1rem;
+    }
+
+    img {
+        height: 300px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .border-b-success {
+        border-bottom: 8px solid #27AE60;
+    }
+
+    .border-b-waiting {
+        border-bottom: 8px solid #EF454D;
+    }
+
+    .border-b-processing {
+        border-bottom: 8px solid #FFC107;
+    }
+}

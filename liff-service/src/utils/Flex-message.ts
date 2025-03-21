@@ -423,7 +423,7 @@ function defaultBubble(
         {
             "type": "uri",
             "label": label,
-            "uri": `${BaseUrl}/StatusById/${id}`
+            "uri": `${BaseUrl}/status/${id}`
         } :
         {
             "type": "message",

@@ -19,14 +19,14 @@
     }
 }
 
-.status-card.border-success {
-    border-bottom: 5px solid #198754;
+.status-card.border-b-success {
+    border-bottom: 5px solid #27AE60;
 }
 
-.status-card.border-waiting {
+.status-card.border-b-waiting {
     border-bottom: 5px solid #EF454D;
 }
 
-.status-card.border-processing {
+.status-card.border-b-processing {
     border-bottom: 5px solid #FFC107;
 }

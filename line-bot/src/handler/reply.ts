@@ -1,15 +1,10 @@
 import
 {
-    getSeflMention,
     getEventSourceGroupID,
-    getEventSourceUserID,
-    getEventMessageText,
     getReplyToken,
-    getDestination,
-    getEventPostbackData,
-    getEventRequestUpdateId
+    getEventRequestUpdateId,
+    getEventPostbackDataUpdateId,
 } from './check-event';
-import CryptoJS from "crypto-js";
 import axios from "axios";
 
 import
@@ -20,14 +15,13 @@ import
 import
 {
     defaultBubble,
+    generateId
 } from '../utils';
 
 import
 {
     webhook,
-    TextMessage,
     Message,
-    FlexMessage,
     messagingApi,
 } from '@line/bot-sdk';
 import dotenv from 'dotenv';
@@ -64,18 +58,18 @@ async (
 export const replyMessageUpdate =
 async (
     client: messagingApi.MessagingApiClient,
-    event: webhook.MessageEvent
+    event: webhook.MessageEvent | webhook.PostbackEvent
 ): Promise<void> =>
 {
-    const informId = getEventRequestUpdateId(event);
+    const informId = event.type === 'message' ? getEventRequestUpdateId(event) : getEventPostbackDataUpdateId(event);
     const response = await axios.get(`${BaseUrl}/backend/get/inform/${informId}`);
     const inform = response.data.inform;
 
     if (!process.env.LIFF_ID) {
         throw new Error('LIFF_ID is not defined in environment variables');
     }
-    const id = CryptoJS.HmacMD5(informId, process.env.LIFF_ID).toString().slice(0, 6);
-    const idEncrypt = `${new Date(inform.timeStamp).getFullYear()}-${id}-G`;
+
+    const idEncrypt = generateId(inform.timeStamp, inform.id);
     const orgName = inform.org_name;
     const timeStamp = inform.timeStamp;
     const type = inform.type;
@@ -107,8 +101,8 @@ async (
     if (!process.env.LIFF_ID) {
         throw new Error('LIFF_ID is not defined in environment variables');
     }
-    const id = CryptoJS.HmacMD5(informId, process.env.LIFF_ID).toString().slice(0, 6);
-    const idEncrypt = `${new Date(inform.timeStamp).getFullYear()}-${id}-G`;
+
+    const idEncrypt = generateId(inform.timeStamp, inform.id);
     const orgName = inform.org_name;
     const timeStamp = inform.timeStamp;
     const type = inform.type;

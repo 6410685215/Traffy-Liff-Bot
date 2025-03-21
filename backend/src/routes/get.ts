@@ -38,10 +38,18 @@ router.get("/inform/:id", async (req, res) => {
     const id = req.params.id;
     const inform = await Inform.getInformById(id);
     const status = await Status.getStatusByInformId(id);
-    const location = await Location.getLocationByInformId(id);
+    const location = await Location.getLocationById(id);
+
+    if (!inform) {
+        res.json({ status: "Error", message: "Inform not found" });
+        return;
+    }
 
     const data = {
-        ...inform,
+        id: inform.id,
+        type: inform.type,
+        timeStamp: inform.timeStamp,
+        org_name: inform.org_name,
         status: status,
         location: location
     };

@@ -23,8 +23,6 @@ import "./Inform.css";
 
 import megaPhoneIcon from "/liff-icons/megaphone.svg";
 
-const BaseUrl = import.meta.env.VITE_URL;
-
 export default function Inform() {
     const [sending, setSending] = useState<boolean>(false);
     const [validated, setValidated] = useState(false);
@@ -100,7 +98,6 @@ export default function Inform() {
         formData.append("image", imageFile);
 
         setSending(true);
-        alert("Sending...");
         try {
             const response = await axios.post<{ id: string }>('/backend/post/api/inform', formData);
             await liff.sendMessages([

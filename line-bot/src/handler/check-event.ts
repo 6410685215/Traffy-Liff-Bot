@@ -109,3 +109,17 @@ export const getEventRequestUpdateId = (event: webhook.MessageEvent): string =>
     }
     return 'NaN';
 }
+
+export const getEventPostbackDataRequest = (event: webhook.PostbackEvent, text: string): boolean =>
+{
+    const data = event.postback.data;
+    const command = data.split('-');
+    return command[0] === text;
+}
+
+export const getEventPostbackDataUpdateId = (event: webhook.PostbackEvent): string =>
+{
+    const data = event.postback.data;
+    const command = data.split('-');
+    return command[1];
+}
