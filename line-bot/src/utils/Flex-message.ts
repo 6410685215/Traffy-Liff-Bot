@@ -363,7 +363,7 @@ function defaultBubble(
         status: string,
     ): FlexComponent {
         const statusColor = getStatusInfoColor(status);
-        return {
+        const result = {
             "type": "box",
             "layout": "horizontal",
             "contents": [
@@ -423,6 +423,15 @@ function defaultBubble(
             ],
             "spacing": "lg",
         };
+
+        if (photoUrl === '') {
+            result.contents[1].contents.shift();
+        }
+        if (desc === '') {
+            result.contents[1].contents.pop();
+        }
+
+        return result as FlexComponent;
     };
     function actionButtonComponent(
         label: string,

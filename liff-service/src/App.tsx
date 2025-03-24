@@ -29,14 +29,14 @@ function App() {
             setIsInClient(true);
             setIsLoading(false);
         } else if (navigator.userAgent.includes("Line")) {
-            // window.location.href = liff.permanentLink.createUrl();
+            window.location.href = liff.permanentLink.createUrl();
         }
 
     }, []);
 
     return (
         <div className="App">
-            {(!isInClient && !isLoading) ? (
+            {(!isInClient && isLoading) ? (
                 <div id="not-in-line" className="vh-100 d-flex flex-column align-items-center justify-content-center">
                     <h1>Not in LINE Mobile</h1>
                     <p>Please open this page in LINE Mobile.</p>
