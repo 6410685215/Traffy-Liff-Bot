@@ -5,7 +5,9 @@
 CHANNEL_SECRET={your_channel_secret}
 CHANNEL_ACCESS_TOKEN={your_channel_access_token}
 LIFF_URL=https://liff.line.me/{your_liff_id}
+LIFF_ID={your_liff_id}
 PUBLIC_URL=https://{your_domain.com}/public
+BASE_URL=https://{your_domain.com}
 PORT=3000
 ```
 

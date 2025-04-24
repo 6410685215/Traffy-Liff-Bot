@@ -43,6 +43,16 @@ CREATE TABLE "categories" (
     CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Groups" (
+    "id" TEXT NOT NULL,
+    "uuid_qr" TEXT NOT NULL,
+    "org_name" TEXT NOT NULL,
+    "org_id" TEXT NOT NULL,
+
+    CONSTRAINT "Groups_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Location_id_key" ON "Location"("id");
 

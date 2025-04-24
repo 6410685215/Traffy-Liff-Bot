@@ -2,7 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 
 import * as api from "../api";
-import { Inform, Status, Location } from "../model";
+import { Inform, Status, Location, Groups } from "../model";
 import { uploadSupabase, FileUpload } from "../utils/FileUpload";
 
 const router = Router();
@@ -30,16 +30,18 @@ router.post("/api/inform", upload.single("image"), async (req, res) => {
         accessToken,
         groupID,
         OAuserID,
-        uuid_qr,
+        // uuid_qr,
         address,
         latitude,
         longitude,
         inform_type,
-        description
+        description,
+        org_name,
+        org_id,
     } = body;
 
     const imageUrl = file ? await fileUpload.upload(file) : null;
-    const [org_name, org_id] = await api.getOrg(uuid_qr);
+    // const [org_name, org_id] = await api.getOrg(uuid_qr);
     const user = await api.getUser(accessToken);
     const user_id = user.userId;
     const user_name = user.displayName;
@@ -71,6 +73,30 @@ router.post("/api/inform", upload.single("image"), async (req, res) => {
     res.json({
         status: "200",
         id: data.id,
+    });
+});
+
+router.post("/api/save-default", async (req, res) => {
+    const { body } = req;
+    console.log("Received body:", body);
+
+    const {
+        uuid_qr,
+        org_name,
+        org_id,
+        group_id
+    } = body;
+
+    const group = await Groups.saveDefault({
+        id: group_id,
+        uuid_qr,
+        org_name,
+        org_id,
+    });
+
+    res.json({
+        status: "200",
+        id: group.id,
     });
 });
 

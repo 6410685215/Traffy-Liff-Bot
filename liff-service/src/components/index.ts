@@ -5,6 +5,7 @@ import StatusCard from "./status-card";
 import ImgCarousel from "./img-carousel";
 import StatusDetail from "./status-detail";
 import ReportList from "./reportList";
+import QrScanner from "./qr-reader";
 
 export
 {
@@ -15,4 +16,5 @@ export
     ImgCarousel,
     StatusDetail,
     ReportList,
+    QrScanner
 };

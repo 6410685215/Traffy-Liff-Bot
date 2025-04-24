@@ -5,6 +5,7 @@ import
     Inform,
     Location,
     Status,
+    Groups
 } from "../model";
 
 const router = Router();
@@ -62,4 +63,20 @@ router.get("/api/types", async (req, res) => {
     res.json({ status: "OK", types: types });
 });
 
+router.get("/api/default/:id", async (req, res) => {
+    const group = await Groups.getDefaultById(req.params.id);
+    if (!group) {
+        res.json({ status: "Error", message: "Group not found" });
+        return;
+    }
+    res.json({
+        status: "OK",
+        default: {
+            uuid_qr: group.uuid_qr,
+            org_name: group.org_name,
+            org_id: group.org_id,
+            group_id: group.id
+        }
+    });
+});
 export default router;

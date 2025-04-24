@@ -36,6 +36,8 @@ export default function Inform() {
     const [type, setType] = useState<string | null>(null);
     const [description, setDescription] = useState<string | null>(null);
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const [orgName, setOrgName] = useState<string | null>(null);
+    const [orgID, setOrgID] = useState<string | null>(null);
 
     useEffect(() => {
         const initProfile = () => {
@@ -48,7 +50,20 @@ export default function Inform() {
                 console.error(e);
             }
         };
+        const fetchData = async () => {
+            try {
+                const data = await axios.get(`/backend/get/api/default/${getGroupID()}`);
+                if (data.data.status === "OK") {
+                    setUUID_QR(data.data.default.uuid_qr);
+                    setOrgName(data.data.default.org_name);
+                    setOrgID(data.data.default.org_id);
+                }
+            } catch (error) {
+                console.error("Error fetching default data:", error);
+            }
+        }
         initProfile();
+        fetchData();
     }, []);
 
     const getGroupID = (): string | null => {
@@ -85,6 +100,14 @@ export default function Inform() {
             alert("Please upload image");
             return;
         }
+        if (!orgName) {
+            alert("Please scan QR code");
+            return;
+        }
+        if (!orgID) {
+            alert("Please scan QR code");
+            return;
+        }
 
         formData.append("accessToken", accessToken);
         formData.append("groupID", groupID);
@@ -96,6 +119,8 @@ export default function Inform() {
         formData.append("inform_type", type);
         formData.append("description", description);
         formData.append("image", imageFile);
+        formData.append("org_name", orgName);
+        formData.append("org_id", orgID);
 
         setSending(true);
         try {
@@ -144,6 +169,8 @@ export default function Inform() {
                     uuid_qr={setUUID_QR}
                     address={setAddress}
                     loc={setLocation}
+                    orgName={setOrgName}
+                    orgID={setOrgID}
                 />
             </Card>
 

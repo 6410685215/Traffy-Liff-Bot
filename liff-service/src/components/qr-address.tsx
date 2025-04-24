@@ -19,24 +19,41 @@ import './qr-address.css';
 interface QrAddressProps {
     uuid_qr: (result: string) => void;
     address: (result: string) => void;
+    orgName: (result: string) => void;
+    orgID: (result: string) => void;
     loc: (result: { latitude: number, longitude: number } | null) => void;
 }
 
-const qrAddress: React.FC<QrAddressProps> = ({ uuid_qr, address, loc }) => {
+const qrAddress: React.FC<QrAddressProps> = ({ uuid_qr, address, loc, orgName, orgID }) => {
     const [state, setState] = useState(false);
     const [uuidQr, setUuid] = useState('');
+    const [org_name, setOrgName] = useState('');
     const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
     const [addr, setAddr] = useState<string | null>(null);
+    const [uuidValid, setUuidValid] = useState<boolean | null>(null);
 
-    const handleScan = (data: any) => {
+    const handleScan = async (data: any) => {
         if (data) {
             const urlParams = new URLSearchParams(new URL(data).search);
             const uuid = urlParams.get('key') || '';
             uuid_qr(uuid);
             setUuid(uuid);
+            await handleUuidCheck(uuid);
             setState(false);
         }
-    }
+    };
+
+    const handleUuidCheck = async (uuid: string) => {
+        const org = await axios.get<{ status: boolean, message: { name: string, group_id: string } }>(`https://kong.traffy.in.th/core-dashboard-api/uuid-check?uuid=${uuid}`)
+        if (!org.data.status) {
+            setUuidValid(false);
+            return;
+        }
+        setUuidValid(true);
+        setOrgName(org.data.message.name);
+        orgName(org.data.message.name);
+        orgID(org.data.message.group_id);
+    };
 
     const handleClose = () => setState(false);
     const handleShow = () => setState(true);
@@ -57,6 +74,26 @@ const qrAddress: React.FC<QrAddressProps> = ({ uuid_qr, address, loc }) => {
             });
         }
     };
+
+    const statusUUID = (status: boolean | null) => {
+        switch (status) {
+            case true:
+                return "is-valid";
+            case false:
+                return "is-invalid";
+            default:
+                return "";
+        }
+    };
+
+    const changeUUID = (uuid: string) => {
+        setUuid(uuid);
+        uuid_qr(uuid);
+    };
+    const changeOrgName = (org_name: string) => {
+        setOrgName(org_name);
+        orgName(org_name);
+    }
 
     const getAddress = async (latitude: number, longitude: number): Promise<void> => {
         const options = {
@@ -91,12 +128,23 @@ const qrAddress: React.FC<QrAddressProps> = ({ uuid_qr, address, loc }) => {
             </Card.Header>
             <Card.Body>
             <Form.Label>สแกน QR Code / กรอกรหัสหน่วยงาน</Form.Label>
+            <div className="p-1">
+                <Form.Control
+                    type="text"
+                    placeholder="ชื่อหน่วยงาน"
+                    value={org_name}
+                    onChange={(e) => changeOrgName(e.target.value)}
+                    required
+                    disabled
+                />
+            </div>
             <InputGroup className="uuid-qr-input p-1">
                 <Form.Control
                     type="text"
                     placeholder="UUID-QR"
                     value={uuidQr}
-                    onChange={(e) => setUuid(e.target.value)}
+                    onChange={(e) => changeUUID(e.target.value)}
+                    className={statusUUID(uuidValid)}
                     required
                 />
                 <InputGroup.Text className="scan-btn p-0 ps-2">
@@ -105,6 +153,15 @@ const qrAddress: React.FC<QrAddressProps> = ({ uuid_qr, address, loc }) => {
                     </Button>
                 </InputGroup.Text>
             </InputGroup>
+            <div className="p-1">
+                <Button
+                    variant="secondary"
+                    className="w-100"
+                    onClick={() => handleUuidCheck(uuidQr)}
+                >
+                    ตรวจสอบ UUID
+                </Button>
+            </div>
             </Card.Body>
             <Offcanvas show={state} onHide={handleClose} placement="bottom" className="offcanvas-transform">
                 <Offcanvas.Header closeButton>

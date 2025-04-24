@@ -44,3 +44,10 @@ model categories {
   id            Int     @id @default(autoincrement())
   category_name String?
 }
+
+model Groups {
+  id          String @id
+  uuid_qr     String
+  org_name    String
+  org_id      String
+}

@@ -37,4 +37,11 @@ interface Status {
     photoUrl?: string;
 }
 
-export { InformData, Status };
+interface Groups {
+    id: string;
+    uuid_qr: string;
+    org_name: string;
+    org_id: string;
+}
+
+export { InformData, Status, Groups };

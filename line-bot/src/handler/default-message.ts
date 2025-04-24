@@ -35,6 +35,15 @@ export const defaultMessage = (event: webhook.Event, botUserID: string, groupId:
                         label: 'ตรวจสอบสถานะ',
                         uri: `${LIFF_URL}/status?groupId=${groupId}`
                     }
+                },
+                {
+                    type: 'action',
+                    imageUrl: `${PUBLIC_URL}/quickreply-icons/setting.png`,
+                    action: {
+                        type: 'uri',
+                        label: 'ตั้งค่า',
+                        uri: `${LIFF_URL}/setting?groupId=${groupId}`
+                    }
                 }
             ]
         }
