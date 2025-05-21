@@ -6,25 +6,19 @@
 # VDO Demo
 ![Inform Info](media/Inform.jpg)
 1. Video Demo 1 การแจ้งเรื่อง
-<video controls>
-    <source src="media/Screen_Recording_20250504_135858_LINE.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/745ea277-c653-48b5-b3f7-4db9a64cd9fe
+
 2. Video Demo 2 ตรวจสอบสถานะ ผ่าน LIFF
-<video controls>
-    <source src="media/Screen_Recording_20250504_140023_LINE.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/06ca2a08-3b25-49d2-ab34-3e11ef320e2b
+
 3. Video Demo 3 การแชร์เข้าสู่กลุ่ม และ อัปเดตสถานะจากปุ่มบน Flex Message
-<video controls>
-    <source src="media/Screen_Recording_20250504_140139_LINE.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/b118396c-84ad-45ce-9b35-b6dfad2842d9
+
 4. Video Demo 4 การแชร์ไปยังภายนอกกลุ่ม
-<video controls>
-    <source src="media/Screen_Recording_20250504_140249_LINE.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/dc9bcc1d-878a-43ea-9f45-f550224be801
+
 5. Video Demo 5 การตั้งค่าเริ่มต้นของหน่วยงานที่รับแจ้งของกลุ่ม
-<video controls>
-    <source src="media/Screen_Recording_20250504_154009_LINE.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/ed6b34fc-bd8b-4be7-80e3-974445429e86
 
 # Deployments
 ### Option 1: Install new SSL certificates
