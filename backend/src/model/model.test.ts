@@ -47,19 +47,20 @@ const statusData = {
 };
 const statusData2 = {
     status: "กำลังดำเนินการ",
-    photoUrl: "https://picsum.photos/200/300?2"
+    description: "Test status กำลังดำเนินการ",
+    photoUrl: "https://picsum.photos/200/300?1"
 };
 
 const statusData3 = {
     status: "เสร็จสิ้น",
     description: "Test status เสร็จสิ้น",
-    photoUrl: "https://picsum.photos/200/300?1"
+    photoUrl: "https://picsum.photos/200/300?2"
 };
 
 async function addInform() {
-    await Status.addStatus({ ...statusData2, inform: { connect: { id: "cm8o5xibm0002ob2bsoxftqks" } }});
-    // setTimeout(() => {}, 10000);
-    // await Status.addStatus({ ...statusData3, inform: { connect: { id: "cm8o5vm3n0000ob2bsiqqswvt" } }});
+    await Status.addStatus({ ...statusData2, inform: { connect: { id: "cma8fddrn0002s52bxi07d1ar" } }});
+    await Status.addStatus({ ...statusData2, inform: { connect: { id: "cma8fbd0q0000s52bj1lk6fju" } }});
+    await Status.addStatus({ ...statusData3, inform: { connect: { id: "cma8fbd0q0000s52bj1lk6fju" } }});
 }
 
 async function getInform() {
